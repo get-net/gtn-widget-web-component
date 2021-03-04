@@ -1,70 +1,4 @@
 {
-    "terms": {
-        "data": "Данные | Данные",
-        "application": "Приложение | Приложения",
-        "invite": "Приглашение | Приглашения",
-        "first_name": "Имя",
-        "last_name": "Фамилия",
-        "middle_name": "Отчество",
-        "gender": "Пол",
-        "dob": "Дата рождения",
-        "organization": "Организация | Организации"
-    },
-    "alias": {
-        "per": "Физическое лицо",
-        "ip": "Индивидуальный предприниматель",
-        "org": "Юридическое лицо",
-        "member": "Сотрудник",
-        "owner": "Владелец",
-        "admin": "Администратор",
-        "per_detail": "Персональные данные",
-        "contact_details": "Контактные данные",
-        "male": "Мужчина",
-        "female": "Женщина"
-    },
-    "button": {
-        "save": "Сохранить изменения",
-        "close": "Закрыть"
-    },
-    "titles": {
-        "scopes": "Доступы {client}"
-    },
-    "fields": {
-        "orgtype": "Тип организации",
-        "name": "Наименование",
-        "shortname": "Наименование организации",
-        "fullname": "Полное наименование организации",
-        "inn": "ИНН",
-        "kpp": "КПП",
-        "dob": "Дата Рождения",
-        "issue_date": "Дата Выдачи",
-        "first_name": "Имя",
-        "last_name": "Фамилия",
-        "middle_name": "Отчество",
-        "serial_and_number": "Серия и номер",
-        "issued_by": "Выдан",
-        "subdivision_code": "Код подразделения",
-        "snils": "СНИЛС",
-        "legal_address": "Юридический адрес",
-        "service_address": "Адрес предоставления услуг",
-        "billing_address": "Адрес доставки счетов",
-        "phone": "Номер телефона",
-        "email": "Email",
-        "sex": "Пол",
-        "system": "Система",
-        "systemlinktype": "Тип связи с системой",
-        "idtype": "Тип идентификатора",
-        "extid": "Внешний",
-        "linkid": "Идентификатор связи",
-        "activedates": "Период действия",
-        "selectdates": "Выберите даты",
-        "tsto": "Дата истечения",
-        "nodate": "дд.мм.гг"
-    },
-    "form-field": {
-        "email-phone": "Email или телефон",
-        "confirmation": "Подтверждение"
-    },
     "constructor": {
         "settings": "Настрйки поля",
         "preview": "Предпросмотр",
@@ -85,6 +19,7 @@
         "template-description": "Описание шаблона",
         "data-type": "Тип данных",
         "placeholder": "Placeholder",
-        "stacked": "В колонку"
+        "stacked": "В колонку",
+        "submit": "Отправить"
     }
 }

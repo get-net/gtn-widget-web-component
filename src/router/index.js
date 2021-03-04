@@ -1,10 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Layout from "@/views/Layout";
-import InviteConstructor from "@/components/constructor/InviteConstructor"
-import ConstructorList from "@/components/constructor/ConstructorList"
 import TemplateView from "@/components/constructor/TemplateView"
-
+import TemplateSent from "@/components/messages/TemplateSent"
 Vue.use(VueRouter);
 
 const routes = [
@@ -12,25 +10,21 @@ const routes = [
         path: "/",
         component: Layout,
         name: 'layout',
-        redirect: {name: "constructor"},
         children: [
             {
-                path: "constructor",
-                component: InviteConstructor,
-                name: "constructor"
-            },                
-            {
-                path:"constructor/list",
-                component: ConstructorList,
-                name:"constructorlist"
-            },
-            {
-                path:"constructor/view",
+                path:"template",
                 component: TemplateView,
-                name:"constructorview"
+                name:"template"
             },
-        ]
-    },
+            {
+                path: "success",
+                component: TemplateSent,
+                name: "success"
+            }
+            
+        ],
+    }
+   
 ];
 
 const router = new VueRouter({

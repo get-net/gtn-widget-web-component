@@ -1,6 +1,9 @@
 <template>
+<div>
+  <layout></layout>
+</div>
   
-  <constructor-view v-if="currentTemplate" :template="currentTemplate.data"></constructor-view>
+  
 </template>
 
 <style lang="scss">
@@ -10,19 +13,22 @@
 </style>
 
 <script>
-import ConstructorView from './components/constructor/ConstructorView.vue'
+import Layout from './views/Layout.vue'
 export default {
-  components: { ConstructorView },
-
-  computed: {
-    currentTemplate() {
-      console.log(this.$store.getters['template'])
-      return this.$store.getters['template']
-    }
-  },
-
+  components: { Layout },
   mounted() {
-    this.$store.dispatch("getDetailtypeByCode", {code: this.$route.query.code})
+    if (this.$route.query.code && this.$parent.$options.clientData.clientId) {
+      this.$store.dispatch("getDetailtypeByCode",
+        {
+          code: this.$route.query.code,
+          client_id: this.$parent.$options.clientData.clientId
+        }
+      );
+    }
+
+    if (this.$route.query.locale) {
+      this.$i18n.locale = this.$route.query.locale
+    }
   }
 }
 </script>

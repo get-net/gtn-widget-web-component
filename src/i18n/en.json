@@ -1,71 +1,4 @@
 {
-    "terms": {
-        "data": "Data | Data",
-        "application": "Application | Applications",
-        "invite": "Invite | Invites",
-        "first_name": "Name",
-        "last_name": "Last name",
-        "middle_name": "Middle name",
-        "gender": "Gender",
-        "dob": "Date of birth",
-        "organization": "Organization | Organizations"
-    },
-    "alias": {
-        "per": "Person",
-        "ip": "Entrepreneur",
-        "org": "Legal entity",
-        "member": "Employee",
-        "owner": "Owner",
-        "admin": "Administrator",
-        "per_detail": "Personal data",
-        "contact_details": "Contact data",
-        "male": "Male",
-        "female": "Female"
-    },
-    "button": {
-        "save": "Save changes",
-        "close": "Close"
-    },
-    "titles": {
-        "scopes": "Scopes of {client}"
-    },
-    "fields": {
-        "orgtype": "Organisation type",
-        "name": "Name",
-        "shortname": "Organisation name",
-        "fullname": "Full organisation name",
-        "inn": "Tax identification number",
-        "ogrn": "Primary state registration number",
-        "kpp": "Registration issue code",
-        "dob": "Date Of Birth",
-        "issue_date": "Issue Date",
-        "first_name": "First name",
-        "last_name": "Last name",
-        "middle_name": "Middle name",
-        "serial_and_number": "Serial number",
-        "issued_by": "Issued By",
-        "subdivision_code": "Subdivision code",
-        "snils": "SNILS",
-        "legal_address": "Legal address",
-        "service_address": "Service address",
-        "billing_address": "Billing address",
-        "phone": "Phone number",
-        "email": "Email",
-        "sex": "Gender",
-        "system": "System",
-        "systemlinktype": "System Link Type",
-        "idtype": "Identifier type",
-        "extid": "External",
-        "linkid": "Link identification",
-        "activedates": "Active dates",
-        "selectdates": "Select dates",
-        "tsto": "Expiration date",
-        "nodate": "dd.mm.yy"
-    },
-    "form-field": {
-        "email-phone": "Email or phone",
-        "confirmation": "Confirmation"
-    },
     "constructor": {
         "settings": "Field settings",
         "preview": "Preview",
@@ -85,6 +18,7 @@
         "template-name": "Template name",
         "template-description": "Template description",
         "data-type": "Data type",
-        "placeholder": "Placeholder"
+        "placeholder": "Placeholder",
+        "submit": "Submit"
     }
 }
