@@ -10,16 +10,22 @@ export default new Vuex.Store({
     plugins: [VuexReset],
     state: {
         template: null,
-        counterparty: null
+        counterparty: null,
+        token: null,
+        unit: null,
     },
     getters: {
         template: state => state.template,
-        counterparty: state => state.counterparty
+        counterparty: state => state.counterparty,
+        token: state => state.token,
+        unit: state => state.unit
     },
     mutations: {
         reset: () => {},
         setTemplate: (state, newTemplate) => Vue.set(state, 'template', newTemplate),
-        setCounterparty: (state, counterparty) => Vue.set(state, 'counterparty', counterparty)
+        setCounterparty: (state, counterparty) => Vue.set(state, 'counterparty', counterparty),
+        setToken: (state, token) => Vue.set(state, 'token', token),
+        setUnit: (state, unit) => Vue.set(state, 'unit', unit)
     },
     actions: {
         showError: (ctx, e) => {
@@ -36,6 +42,8 @@ export default new Vuex.Store({
                     }
                     ctx.commit('setCounterparty', data.counterparty)
                     ctx.commit('setTemplate', data.detailtype);
+                    ctx.commit('setToken', data.token.access);
+                    ctx.commit('setUnit', data.role.counterparty)
                 }
             })
         },

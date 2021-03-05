@@ -6,8 +6,8 @@ const kyc = axios.create({
 });
 
 kyc.interceptors.request.use(config => {
-    const token = store.getters['agent/token'];
-    config.headers.Authorization = token ? "" : `Bearer 183a707c3a8998087a78654f18d703928b82ebeea9642f32693d68f032d8e4bf`;
+    const token = store.getters['token'];
+    config.headers.Authorization = token ? `Bearer ${token}` : "";
     return config;
 });
 
