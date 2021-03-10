@@ -18,6 +18,7 @@
 </template>
 
 <script>
+const _ = require('lodash');
 export default {
     props: ['template'],
     computed: {
@@ -28,6 +29,14 @@ export default {
             return this.$store.getters['template']
         }
     },
+    watch: {
+        template: {
+            deep: true,
+            handler() {
+                this.debouncedUpdate();     
+            }
+        }
+    },
 
     methods: {
         onSendFormClick() {
@@ -36,19 +45,47 @@ export default {
                 this.$ncformValidate(item.id).then(data => {
                     if (!data.result) {
                         validationPassed = false;         
-                    }
-                    if(validationPassed) {
-                        let body = {
-                            counterparty: this.counterparty.uid,
-                            type: this.currentTemplate.uid,
-                            data: JSON.stringify(this.template)
-                        }
-                        this.$store.dispatch('saveDetailData', body)
+                    }             
+                })
+            })
+            if(validationPassed) {
+                // let body = {
+                //     detail: this.currentTemplate.uid,
+                //     status: "new"
+                // }
+                //this.$store.dispatch("updateDetailStatus", body)
+                this.saveFiles()
+            }
+        },
+        onFormUpdate() {
+            
+            let body = {
+                uid: this.currentTemplate.uid,
+                data: JSON.stringify(this.template),
+                force: true
+            }
+            this.$store.dispatch("updateDetailData", body)
+        },
+        saveFiles() {
+            this.currentTemplate.data.forEach(item => {
+                Object.values(item.value).forEach(propVal => {
+                    if (propVal instanceof Array) {
+                        propVal.forEach(prop => {
+                            if (prop instanceof File) {                  
+                                let body = {
+                                    file: prop,
+                                }
+                                this.$store.dispatch("uploadFileToFileManager", body)
+                            }
+                        })
                     }
                 })
             })
         }
-    }
+    },
+    created: function () {
+        this.debouncedUpdate = _.debounce(this.onFormUpdate, 5000)
+    },
 }
 </script>
    
