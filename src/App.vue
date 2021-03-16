@@ -28,6 +28,7 @@ export default {
 
     if (this.$route.query.locale) {
       this.$i18n.locale = this.$route.query.locale
+      window.__$ncform.lang = this.$route.query.locale
     }
   }
 }

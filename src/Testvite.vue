@@ -1,6 +1,7 @@
 <template>
   <div id="widget">
   </div>
+
 </template>
 
 <script>
@@ -14,6 +15,7 @@ export default {
       //app id 
     })
     widget.mount("#widget")
+
   }
 }
 </script>

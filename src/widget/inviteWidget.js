@@ -1,6 +1,6 @@
 import Vue from "vue";
 import App from "../App.vue";
-import vueNcform from "ncform"
+import vueNcform from "@ncform/ncform"
 import ncformBootstrap from 'ncform-bootstrap';
 import router from "../router";
 import store from "../store";
@@ -9,7 +9,8 @@ import { BootstrapVue, IconsPlugin } from "bootstrap-vue";
 
 Vue.use(BootstrapVue);
 Vue.use(IconsPlugin)
-Vue.use(vueNcform, { extComponents: ncformBootstrap, lang: 'en'});
+console.log(i18n.locale)
+Vue.use(vueNcform, { extComponents: ncformBootstrap, lang: i18n.locale});
 
 Vue.config.productionTip = false;
 Vue.config.runtimeCompiler = true

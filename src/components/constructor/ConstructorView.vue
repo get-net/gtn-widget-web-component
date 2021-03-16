@@ -27,6 +27,9 @@ export default {
         },
         currentTemplate() {
             return this.$store.getters['template']
+        },
+        fileLink() {
+            return this.$store.getters['fileLink']
         }
     },
     watch: {
@@ -35,6 +38,10 @@ export default {
             handler() {
                 this.debouncedUpdate();     
             }
+        },
+        fileLink(val) {
+            console.log(JSON.stringify(this.template))
+            console.log(val)
         }
     },
 
@@ -49,12 +56,12 @@ export default {
                 })
             })
             if(validationPassed) {
-                // let body = {
-                //     detail: this.currentTemplate.uid,
-                //     status: "new"
-                // }
-                //this.$store.dispatch("updateDetailStatus", body)
                 this.saveFiles()
+                let body = {
+                    detail: this.currentTemplate.uid,
+                    status: "new"
+                }
+                this.$store.dispatch("updateDetailStatus", body)       
             }
         },
         onFormUpdate() {
@@ -67,17 +74,12 @@ export default {
             this.$store.dispatch("updateDetailData", body)
         },
         saveFiles() {
-            this.currentTemplate.data.forEach(item => {
-                Object.values(item.value).forEach(propVal => {
-                    if (propVal instanceof Array) {
-                        propVal.forEach(prop => {
-                            if (prop instanceof File) {                  
-                                let body = {
-                                    file: prop,
-                                }
-                                this.$store.dispatch("uploadFileToFileManager", body)
-                            }
-                        })
+            this.template.forEach(item => {
+                Object.entries(item.value).forEach(entry => {
+                    if (entry[1] instanceof Array) {
+                        if (entry[1][0] instanceof File)  {
+                            this.$store.dispatch("uploadFileToFileManager", entry[1][0])           
+                        }      
                     }
                 })
             })

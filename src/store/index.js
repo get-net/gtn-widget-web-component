@@ -16,20 +16,22 @@ export default new Vuex.Store({
         counterparty: null,
         token: null,
         unit: null,
-        
+        fileLink: null,
     },
     getters: {
         template: state => state.template,
         counterparty: state => state.counterparty,
         token: state => state.token,
-        unit: state => state.unit
+        unit: state => state.unit,
+        fileLink: state => state.fileLink
     },
     mutations: {
         reset: () => {},
         setTemplate: (state, newTemplate) => Vue.set(state, 'template', newTemplate),
         setCounterparty: (state, counterparty) => Vue.set(state, 'counterparty', counterparty),
         setToken: (state, token) => Vue.set(state, 'token', token),
-        setUnit: (state, unit) => Vue.set(state, 'unit', unit)
+        setUnit: (state, unit) => Vue.set(state, 'unit', unit),
+        setFileLink: (state, link) => Vue.set(state, 'fileLink', link)
     },
     actions: {
         showError: (ctx, e) => {
@@ -46,7 +48,6 @@ export default new Vuex.Store({
                     ctx.commit('setCounterparty', data.counterparty)
                     ctx.commit('setTemplate', data.detailtype);
                     ctx.commit('setToken', data.token.access);
-                    ctx.commit('setUnit', data.role.counterparty)
                 }
             })
         },
@@ -64,30 +65,42 @@ export default new Vuex.Store({
                 }
             })
         },
-        async uploadFileToFileManager(ctx, body) {
-            const reader = new FileReader();
+        async uploadFileToFileManager(ctx, body) {  
             let payload = {
-                name: body.file.name,
+                name: body.name,
                 chunks: 1
             }
+
             fileManagerApi.post("/files/add_file", payload).then(({data}) => {
                 if(!data.error) {
-                    reader.readAsArrayBuffer(body.file)
+                    const reader = new FileReader();
+                    reader.readAsArrayBuffer(body)
                     reader.addEventListener("loadend", function(res) {
                         let chunk = res.target.result
                         fileManager.put("upload", chunk, {
                             headers: {
-                                'X-Session-Id':        data.new_file.hash,
-                                'Content-Range':       `bytes ${0}-${body.file.size-1}/${body.file.size}`,
-                                'Content-Disposition': `attachment; filename*=UTF-8''${encodeURI(body.file.name)}`,
+                                'X-Session-Id': data.new_file.hash,
+                                'Content-Range': `bytes ${0}-${body.size-1}/${body.size}`,
+                                'Content-Disposition': `attachment; filename*=UTF-8''${encodeURI(body.name)}`,
                                 'Path': data.new_file.path
                             }
-                            
+                        }).then((uploadData) => {
+                            if (uploadData.status == 200) {
+                                let updatePayload = {
+                                    current_chunk: 0,
+                                    loaded: true,
+                                    uid: data.new_file.uid
+                                }
+                                fileManagerApi.put("/files/update_status_file", updatePayload).then(() =>{
+                                    ctx.commit("setFileLink", data.new_file.short)
+                                    body.$path = {src:data.new_file.short, name: body.name}
+                                })
+                            }                    
                         })
                     });
-                    
+                    return data.new_file.short
                 }
             })            
-        }
+        },
     },
 });
