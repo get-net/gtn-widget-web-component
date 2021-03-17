@@ -14,16 +14,17 @@
 import TemplateView from './components/constructor/TemplateView.vue';
 export default {
   components: { TemplateView },
+  props: ['client', 'test'],
+
   mounted() {
     const params = new URLSearchParams(window.location.search)
-
-    if (params.get('code') && this.$parent.$options.clientData.clientId) {
+    if (params.get('code') && this.client) {
       this.$store.dispatch("getDetailtypeByCode",
         {
           code: params.get('code'),
-          client_id: this.$parent.$options.clientData.clientId
+          client_id: this.client
         }
-      );
+      ); 
     }
 
     if (params.has('locale')) {

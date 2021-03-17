@@ -1,5 +1,5 @@
 <template>
-    <div class="notification-content">
+    <div class="notification-content" style="margin-top: 20%;">
         <h1 class="mt-3 font-weight-bold text-center">Форма отправлена на подтверждение</h1>
         <div>
             <p class="text-center">
@@ -20,8 +20,5 @@ name: "TemplateSent",
 }
 </script>
 
-<style scoped>
-    .notification-content {
-        margin-top: 20%;
-    }
+<style>
 </style>

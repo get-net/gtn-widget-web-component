@@ -5,7 +5,7 @@ import kyc from "@/services/kyc"
 import kycClient from "@/services/kycClient"
 import fileManagerApi from "@/services/fileManagerApi"
 import fileManager from "@/services/fileManager"
-import router from "../router/index.js";
+// import router from "../router/index.js";
 // modules
 Vue.use(Vuex);
 
@@ -61,7 +61,7 @@ export default new Vuex.Store({
         updateDetailStatus(ctx, body) {
             return kycClient.post("/profile/detail/status", body).then(({data}) => {
                 if (!data.error) {
-                    router.push({name: "success"})
+                    // router.push({name: "success"})
                 }
             })
         },

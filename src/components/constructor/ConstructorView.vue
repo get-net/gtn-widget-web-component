@@ -47,22 +47,29 @@ export default {
 
     methods: {
         onSendFormClick() {
-            let validationPassed = true
+            let promises = []
             this.template.forEach(item => {
-                this.$ncformValidate(item.id).then(data => {
-                    if (!data.result) {
-                        validationPassed = false;         
-                    }             
+                let promise = new Promise(resolve => {
+                    this.$ncformValidate(item.id).then(res => {
+                        resolve(res)
+                    })
                 })
+                promises.push(promise)
             })
-            if(validationPassed) {
-                this.saveFiles()
-                let body = {
-                    detail: this.currentTemplate.uid,
-                    status: "new"
+
+            Promise.all(promises).then(data => {
+                let validationPassed = data.every(el => {
+                    return el.result === true
+                })
+                if(validationPassed) {
+                    this.saveFiles()
+                    let body = {
+                        detail: this.currentTemplate.uid,
+                        status: "new"
+                    }
+                    this.$store.dispatch("updateDetailStatus", body)       
                 }
-                this.$store.dispatch("updateDetailStatus", body)       
-            }
+            })  
         },
         onFormUpdate() {
             

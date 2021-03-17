@@ -19,7 +19,7 @@
     "date-fns": "^2.18.0",
     "lodash": "^4.17.20",
     "ncform": "^1.2.5",
-    "ncform-bootstrap": "^1.4.9",
+    "ncform-bootstrap": "^1.4.10",
     "vee-validate": "^4.1.11",
     "vue": "^2.6.11",
     "vue-custom-element": "^3.3.0",
