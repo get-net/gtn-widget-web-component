@@ -1,9 +1,7 @@
 <template>
-<div>
-  <layout></layout>
-</div>
-  
-  
+  <div>
+    <template-view></template-view>
+  </div>
 </template>
 
 <style lang="scss">
@@ -13,22 +11,24 @@
 </style>
 
 <script>
-import Layout from './views/Layout.vue'
+import TemplateView from './components/constructor/TemplateView.vue';
 export default {
-  components: { Layout },
+  components: { TemplateView },
   mounted() {
-    if (this.$route.query.code && this.$parent.$options.clientData.clientId) {
+    const params = new URLSearchParams(window.location.search)
+
+    if (params.get('code') && this.$parent.$options.clientData.clientId) {
       this.$store.dispatch("getDetailtypeByCode",
         {
-          code: this.$route.query.code,
+          code: params.get('code'),
           client_id: this.$parent.$options.clientData.clientId
         }
       );
     }
 
-    if (this.$route.query.locale) {
-      this.$i18n.locale = this.$route.query.locale
-      window.__$ncform.lang = this.$route.query.locale
+    if (params.has('locale')) {
+      this.$i18n.locale = params.get('locale')
+      window.__$ncform.lang = params.get('locale')
     }
   }
 }

@@ -1,9 +1,9 @@
 {
-  "name": "invite-widget",
-  "version": "0.1.0",
+  "name": "get-net-widget",
+  "version": "0.1.2",
   "repository": {
     "type": "git",
-    "url": "https://github.com/get-net/ncform-bootstrap.git"
+    "url": "https://gitlab.get-net.ru/dev/kyc/invite-widget"
   },
   "scripts": {
     "serve": "vue-cli-service serve",

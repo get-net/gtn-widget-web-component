@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import inviteWidget from './widget/inviteWidget'
+import inviteWidget from './widget/test'
 export default {
   name: "invite-widget",
   mounted() {
