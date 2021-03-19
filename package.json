@@ -1,13 +1,13 @@
 {
   "name": "get-net-widget",
-  "version": "0.1.2",
+  "version": "1.1.3",
   "repository": {
     "type": "git",
-    "url": "https://gitlab.get-net.ru/dev/kyc/invite-widget"
+    "url": "https://github.com/arsenitem/get-net-invite-widget/tree/master"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name GetNetWidget src/widget/index.js",
+    "build": "vue-cli-service build --target wc --name get-net-invite ./src/main.js",
     "lint": "vue-cli-service lint",
     "prepublishOnly": "npm run build"
   },
