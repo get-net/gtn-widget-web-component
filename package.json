@@ -5,6 +5,7 @@
     "type": "git",
     "url": "https://github.com/arsenitem/get-net-invite-widget/tree/master"
   },
+  
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build --target wc --name get-net-invite ./src/main.js",
@@ -79,6 +80,8 @@
     "src",
     "dist"
   ],
+  "license" : "MIT",
+  "homepage": "https://github.com/arsenitem/get-net-invite-widget/blob/master/README.md",
   "publishConfig": {
     "access": "public"
   }
