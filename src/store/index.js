@@ -5,6 +5,7 @@ import kyc from "@/services/kyc"
 import kycClient from "@/services/kycClient"
 import fileManagerApi from "@/services/fileManagerApi"
 import fileManager from "@/services/fileManager"
+import axios from "axios"
 // import router from "../router/index.js";
 // modules
 Vue.use(Vuex);
@@ -38,7 +39,7 @@ export default new Vuex.Store({
             return e;
         },
         getDetailtypeByCode(ctx, body) {
-            return kyc.get(`/get_detailtype?code=${body.code}&client_uid=${body.client_id}`).then(({data}) =>{
+            return axios.get(`http://localhost:8085/api/v1.0/get_detailtype?code=${body.code}&client_uid=${body.client_id}`).then(({data}) =>{
                 if (!data.error) {
                     if (data.embed) {
                         data.detailtype.data = [JSON.parse(data.detailtype.data)]

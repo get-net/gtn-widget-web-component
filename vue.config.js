@@ -34,7 +34,7 @@ function enableShadowCss(config) {
 
 module.exports = {
     runtimeCompiler: true,
-    chainWebpack: config => {
-        enableShadowCss(config);
-      }
+    // chainWebpack: config => {
+    //     enableShadowCss(config);
+    //   }
 }

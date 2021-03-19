@@ -10,7 +10,7 @@
         <b-card>
             <b-row>
                 <b-button @click="onSendFormClick">
-                    {{$t('constructor.submit')}}
+                    {{i18nData[locale].submit}}
                 </b-button>
             </b-row>
         </b-card>
@@ -19,17 +19,31 @@
 
 <script>
 const _ = require('lodash');
+import store from "../../store"
 export default {
+    data() {
+        return {
+            i18nData: {
+                ru: {
+                    submit: "Отправить"
+                },
+                en: {
+                    submit: "Send"
+                }
+            },
+            locale: "en"
+        }   
+    },
     props: ['template'],
     computed: {
         counterparty() {
-            return this.$store.getters['counterparty']
+            return store.getters['counterparty']
         },
         currentTemplate() {
-            return this.$store.getters['template']
+            return store.getters['template']
         },
         fileLink() {
-            return this.$store.getters['fileLink']
+            return store.getters['fileLink']
         }
     },
     watch: {
@@ -67,7 +81,7 @@ export default {
                         detail: this.currentTemplate.uid,
                         status: "new"
                     }
-                    this.$store.dispatch("updateDetailStatus", body)       
+                    store.dispatch("updateDetailStatus", body)       
                 }
             })  
         },
@@ -78,7 +92,7 @@ export default {
                 data: JSON.stringify(this.template),
                 force: true
             }
-            this.$store.dispatch("updateDetailData", body)
+            store.dispatch("updateDetailData", body)
         },
         saveFiles() {
             this.template.forEach(item => {
@@ -90,6 +104,12 @@ export default {
                     }
                 })
             })
+        }
+    },
+    mounted() {
+    const params = new URLSearchParams(window.location.search)
+        if (params.has('locale')) {
+            this.locale = params.get('locale')
         }
     },
     created: function () {

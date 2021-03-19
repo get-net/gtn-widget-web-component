@@ -1,4 +1,6 @@
-import widget from "./inviteWidget"
-if(!customElements.get('invite-widget')) {
-    window.customElements.define('invite-widget', widget);
+import invitePlugin from "./inviteWidgetPlugin"
+
+const widget = {
+    invitePlugin
 }
+export default widget

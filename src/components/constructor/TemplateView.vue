@@ -4,13 +4,14 @@
 
 <script>
 import ConstructorView from "./ConstructorView";
+import store from "../../store"
 export default {
   components: {
     ConstructorView,
   },
   computed: {
     currentTemplate() {
-      return this.$store.getters['template']
+      return store.getters['template']
     }
   },
 };
