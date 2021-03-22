@@ -1,17 +1,13 @@
-import VuexReset from "@ianwalter/vuex-reset";
 import Vuex from "vuex";
 import Vue from "vue";
 import kyc from "@/services/kyc"
 import kycClient from "@/services/kycClient"
 import fileManagerApi from "@/services/fileManagerApi"
 import fileManager from "@/services/fileManager"
-import axios from "axios"
-// import router from "../router/index.js";
-// modules
+
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-    plugins: [VuexReset],
     state: {
         template: null,
         counterparty: null,
@@ -38,8 +34,8 @@ export default new Vuex.Store({
         showError: (ctx, e) => {
             return e;
         },
-        getDetailtypeByCode(ctx, body) {
-            return axios.get(`http://localhost:8085/api/v1.0/get_detailtype?code=${body.code}&client_uid=${body.client_id}`).then(({data}) =>{
+        getInvitationData(ctx, body) {
+            return kyc.get(`/get_detailtype?code=${body.code}&client_uid=${body.client_id}`).then(({data}) =>{
                 if (!data.error) {
                     if (data.embed) {
                         data.detailtype.data = [JSON.parse(data.detailtype.data)]
@@ -60,11 +56,7 @@ export default new Vuex.Store({
             })
         },
         updateDetailStatus(ctx, body) {
-            return kycClient.post("/profile/detail/status", body).then(({data}) => {
-                if (!data.error) {
-                    // router.push({name: "success"})
-                }
-            })
+            return kycClient.post("/profile/detail/status", body);
         },
         async uploadFileToFileManager(ctx, body) {  
             let payload = {

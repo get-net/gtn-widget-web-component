@@ -1,40 +1,18 @@
-function enableShadowCss(config) {
-    const configs = [
-      config.module.rule('vue').use('vue-loader'),
-      config.module.rule('css').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('css').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('css').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('css').oneOf('normal').use('vue-style-loader'),
-      config.module.rule('postcss').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('postcss').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('postcss').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('postcss').oneOf('normal').use('vue-style-loader'),
-      config.module.rule('scss').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('scss').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('scss').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('scss').oneOf('normal').use('vue-style-loader'),
-      config.module.rule('sass').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('sass').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('sass').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('sass').oneOf('normal').use('vue-style-loader'),
-      config.module.rule('less').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('less').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('less').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('less').oneOf('normal').use('vue-style-loader'),
-      config.module.rule('stylus').oneOf('vue-modules').use('vue-style-loader'),
-      config.module.rule('stylus').oneOf('vue').use('vue-style-loader'),
-      config.module.rule('stylus').oneOf('normal-modules').use('vue-style-loader'),
-      config.module.rule('stylus').oneOf('normal').use('vue-style-loader'),
-    ];
-    configs.forEach(c => c.tap(options => {
-      options.shadowMode = true;
-      return options;
-    }));
-  }
-
+var BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const path = require('path');
 module.exports = {
-    runtimeCompiler: true,
-    // chainWebpack: config => {
-    //     enableShadowCss(config);
-    //   }
+  runtimeCompiler: true,
+  configureWebpack: {
+    plugins: [new BundleAnalyzerPlugin()],
+    module: {
+      rules: [
+        {
+          test: /\.js$/,
+          include: path.resolve(__dirname, 'src'),
+          loader: 'babel-loader',
+        },
+      ],
+    }
+  }
+  
 }

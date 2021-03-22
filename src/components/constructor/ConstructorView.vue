@@ -1,5 +1,5 @@
 <template>
-  <div>
+    <div v-if="!formSent">
        <b-card v-for="item in template" v-bind:key="item.id">
             <ncform
                 :form-schema="item"
@@ -14,11 +14,19 @@
                 </b-button>
             </b-row>
         </b-card>
-  </div>
+    </div>
+    <div v-else class="notification-content" style="margin-top: 20%;">
+        <h1 class="mt-3 font-weight-bold text-center">Форма отправлена на подтверждение</h1>
+        <div>
+            <p class="text-center">
+                После верификации данные для входа будут высланы на {{counterparty.name}}.
+            </p>
+        </div>
+    </div>
 </template>
 
 <script>
-const _ = require('lodash');
+import * as debounce from 'lodash/debounce';
 import store from "../../store"
 export default {
     data() {
@@ -31,7 +39,8 @@ export default {
                     submit: "Send"
                 }
             },
-            locale: "en"
+            locale: "en",
+            formSent: false,
         }   
     },
     props: ['template'],
@@ -81,7 +90,11 @@ export default {
                         detail: this.currentTemplate.uid,
                         status: "new"
                     }
-                    store.dispatch("updateDetailStatus", body)       
+                    store.dispatch("updateDetailStatus", body).then(data => {
+                        if (!data.error) {
+                            this.formSent = true;
+                        }                      
+                    })     
                 }
             })  
         },
@@ -99,7 +112,7 @@ export default {
                 Object.entries(item.value).forEach(entry => {
                     if (entry[1] instanceof Array) {
                         if (entry[1][0] instanceof File)  {
-                            this.$store.dispatch("uploadFileToFileManager", entry[1][0])           
+                            store.dispatch("uploadFileToFileManager", entry[1][0])           
                         }      
                     }
                 })
@@ -113,7 +126,7 @@ export default {
         }
     },
     created: function () {
-        this.debouncedUpdate = _.debounce(this.onFormUpdate, 5000)
+        this.debouncedUpdate = debounce(this.onFormUpdate, 5000)
     },
 }
 </script>
