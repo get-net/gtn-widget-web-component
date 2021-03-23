@@ -19,6 +19,7 @@ const plugin = {
         if (!window.__$ncform) {
             Vue.use(vueNcform, { extComponents: ncformBootstrap});
         }
+
         Vue.use(ButtonPlugin);
         Vue.use(LayoutPlugin);
         Vue.use(InputGroupPlugin);

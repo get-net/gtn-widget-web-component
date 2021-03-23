@@ -62,10 +62,6 @@ export default {
                 this.debouncedUpdate();     
             }
         },
-        fileLink(val) {
-            console.log(JSON.stringify(this.template))
-            console.log(val)
-        }
     },
 
     methods: {

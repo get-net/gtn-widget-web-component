@@ -36,8 +36,8 @@ export default new Vuex.Store({
         },
         getInvitationData(ctx, body) {
             return kyc.get(`/get_detailtype?code=${body.code}&client_uid=${body.client_id}`).then(({data}) =>{
-                if (!data.error) {
-                    if (data.embed) {
+                if (data) {
+                    if (data.detailtype.embed) {
                         data.detailtype.data = [JSON.parse(data.detailtype.data)]
                     } else {
                         data.detailtype.data = JSON.parse(data.detailtype.data)
