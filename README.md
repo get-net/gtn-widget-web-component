@@ -1,24 +1,34 @@
-# invite-widget
+# Vue Plugin to handle invitation data on client app
 
-## Project setup
-```
-npm install
-```
+## Installation
+ ``npm install gtn-widget-vue``
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+## Usage
+Visit [kyc-servie](https://test.id.gtn.ee)
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Click on Applications link and then add button:
 
-### Lints and fixes files
-```
-npm run lint
-```
+![alt Application creation](img/applications.png)
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+Fill application data:
+
+![alt Application creation](img/add_app.png)
+
+After save you can watch application properties:
+
+![alt Application creation](img/client.png)
+
+install plugin in your Vue app:
+
+````
+    import gtnPlugin from "gtn-widget-vue"
+
+    Vue.use(gtnPlugin)
+````
+
+use invite-component to handle invites
+````
+<invite-widget 
+    client="your client id">
+</invite-widget>
+````
