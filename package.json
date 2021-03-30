@@ -1,13 +1,13 @@
 {
-  "name": "gtn-widget-vue",
-  "version": "1.1.21",
+  "name": "gtn-widget-wc",
+  "version": "0.0.1",
   "repository": {
     "type": "git",
-    "url": "https://github.com/get-net/gtn-widget-vue"
+    "url": "https://github.com/get-net/gtn-widget-web-component.git"
   },
   "scripts": {
     "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build --target lib --name gtn-widget-vue ./src/widget/inviteWidgetPlugin.js",
+    "build": "vue-cli-service build --target wc --name gtn-widget-wc ./src/widget/inviteWebComponent.js",
     "lint": "vue-cli-service lint",
     "prepublishOnly": "npm run build"
   },
@@ -58,7 +58,7 @@
     "last 2 versions",
     "not dead"
   ],
-  "main": "dist/gtn-widget-vue.umd.js",
+  "main": "dist/gtn-widget-wc.min.js",
   "description": "Get Net widget",
   "author": "Arsenii Temnik",
   "keywords": [
@@ -70,7 +70,6 @@
     "auth"
   ],
   "files": [
-    "src",
     "dist"
   ],
   "publishConfig": {
