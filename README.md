@@ -1,7 +1,11 @@
 # Vue Plugin to handle invitation data on client app
 
 ## Installation
- ``npm install gtn-widget-vue``
+Add scripts to your page 
+```
+    <script src="https://unpkg.com/vue"></script>
+    <script src="https://unpkg.com/gtn-widget-wc"></script>
+```
 
 ## Usage
 Visit [kyc-servie](https://test.id.gtn.ee)
@@ -18,17 +22,10 @@ After save you can watch application properties:
 
 ![alt Application creation](img/client.png)
 
-install plugin in your Vue app:
+Use as simple html tag
 
 ````
-    import gtnPlugin from "gtn-widget-vue"
-
-    Vue.use(gtnPlugin)
-````
-
-use invite-component to handle invites
-````
-<invite-widget 
-    client="your client id">
-</invite-widget>
+    <invite-widget 
+        client="your client id">
+    </invite-widget>
 ````
