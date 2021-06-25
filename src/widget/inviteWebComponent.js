@@ -14,7 +14,9 @@ import {
     FormFilePlugin,
     FormCheckboxPlugin,
     FormGroupPlugin,
-    FormRadioPlugin
+    FormRadioPlugin,
+    SpinnerPlugin,
+    FormSelectPlugin
 } from "bootstrap-vue";
 
 Vue.use(vueNcform, { extComponents: ncformBootstrap});
@@ -29,6 +31,8 @@ Vue.use(FormFilePlugin);
 Vue.use(FormCheckboxPlugin);
 Vue.use(FormGroupPlugin);
 Vue.use(FormRadioPlugin);
+Vue.use(SpinnerPlugin);
+Vue.use(FormSelectPlugin);
 
 const inviteWebComponent = wrap(Vue, inviteWidgetComponent);
 
