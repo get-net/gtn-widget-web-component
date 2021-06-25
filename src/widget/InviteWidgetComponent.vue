@@ -157,10 +157,9 @@ export default {
             let form = store.getters["form"];
             if (form) {
                 form.sections.forEach((section) => {
-                    section.detailtypes.forEach((detailtype) => {
-                        detailtype = constructorHelper.parseDetailtype(
-                            detailtype
-                        );
+                    section.detailtypes.map(dt => {
+                        dt = constructorHelper.parseDetailtype(dt);
+                        return dt
                     });
                 });
                 this.currentForm = form;
